@@ -9,6 +9,17 @@ public class Controller{
     @FXML
     private TextField campo;
 
+
+    @FXML
+    public void fecharP (){
+        campo.setText(campo.getText()+" )");
+    }
+
+    @FXML
+    public void abrirP(){
+        campo.setText(campo.getText()+" (");
+    }
+
     @FXML
     public void p (){
         campo.setText(campo.getText()+" P");
@@ -46,7 +57,7 @@ public class Controller{
 
     @FXML
     public void se (){
-        campo.setText(campo.getText()+" <->");
+        campo.setText(campo.getText()+" ->");
     }
 
     @FXML
@@ -61,7 +72,7 @@ public class Controller{
 
     @FXML
     public void ou (){
-        campo.setText(campo.getText()+" ou");
+        campo.setText(campo.getText()+" v");
     }
 
     @FXML
@@ -75,7 +86,6 @@ public class Controller{
 
         InserirValores.valores(campo.getText());
 
-
-
     }
+
 }
