@@ -68,4 +68,14 @@ public class Controller{
     public void reset (){
         campo.setText(" ");
     }
+
+
+    @FXML
+    public void calcular (){
+
+        InserirValores.valores(campo.getText());
+
+
+
+    }
 }
