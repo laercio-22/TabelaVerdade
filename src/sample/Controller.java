@@ -17,12 +17,12 @@ public class Controller{
 
     @FXML
     public void fecharP (){
-        campo.setText(campo.getText()+" )");
+        campo.setText(campo.getText()+") ");
     }
 
     @FXML
     public void abrirP(){
-        campo.setText(campo.getText()+" (");
+        campo.setText(campo.getText()+"( ");
     }
 
     @FXML
@@ -83,6 +83,7 @@ public class Controller{
     @FXML
     public void reset (){
         campo.setText("");
+        resultado.setText("");
     }
 
 
