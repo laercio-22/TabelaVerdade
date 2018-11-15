@@ -49,19 +49,20 @@ public class Logico {
 	private static Sequencia[] ondernarExecucao(String[] header) {
 		List<Sequencia> seq = new ArrayList<Sequencia>();	
 		int iResultadoAnterior = -1;
+		int parenteses = 1;
 		for(int i = 0; i < header.length; i++) {
 			if ( eOperador(header[i]) ) {
 				
 				Sequencia s = new Sequencia();
-				s.precedencia = precedencia(header[i]);
-				//s.iTermo1 = (seq.isEmpty()) ? i-1 : iResultadoAnterior;
+				s.precedencia = precedencia(header[i]) * parenteses;
 				s.iTermo1 = i-1;
 				s.iTermo2 = i+1;
 				s.iResultado = i;
 				seq.add(s);
 				
-				//iResultadoAnterior = i;
 			}
+			else if (abriuParenteses(header[i])) parenteses++;
+			else if (fechouParenteses(header[i])) parenteses--;
 		}
 		
 		System.out.println("Não ordenado");
@@ -69,7 +70,7 @@ public class Logico {
 			System.out.println(s);
 		}
 		
-		seq.sort( (x, y) -> x.precedencia - y.precedencia );
+		seq.sort( (x, y) -> y.precedencia - x.precedencia );
 		
 		System.out.println("\nOrdenado");
 		for (Sequencia s : seq) {
@@ -82,7 +83,9 @@ public class Logico {
 			}
 			else {
 				if (iResultadoAnterior < s.iResultado) s.iTermo1 = iResultadoAnterior;
-				else s.iTermo2 = iResultadoAnterior;
+				else s.iTermo2 = iResultadoAnterior;					
+				
+				iResultadoAnterior = s.iResultado;
 			}
 		}
 		
@@ -99,15 +102,25 @@ public class Logico {
 	
 	
 	
+	private static boolean fechouParenteses(String s) {
+		// TODO Auto-generated method stub
+		return ")".equals(s);
+	}
+
+	private static boolean abriuParenteses(String s) {
+		// TODO Auto-generated method stub
+		return "(".equals(s);
+	}
+
 	public static int precedencia(String op) {
 		// TODO Auto-generated method stub
 		int p = -1;
 		
-		if("^".equals(op)) p = 3;
+		if("^".equals(op)) p = 5;
 		else if ("v".equals(op)) p = 4;
-		else if("!".equals(op)) p = 5; //ou..ou
-		else if("->".equals(op)) p = 6;
-		else if("<->".equals(op)) p = 7;
+		else if("!".equals(op)) p = 3; //ou..ou
+		else if("->".equals(op)) p = 2;
+		else if("<->".equals(op)) p = 1;
 		return p;
 	}
 
@@ -144,6 +157,11 @@ public class Logico {
 					
 				}
 				lim = lim * 2;
+			}
+			else if (abriuParenteses(tabela[0][i]) || fechouParenteses(tabela[0][i])) {
+				for (int j = 1; j < tabela.length; j++) {
+					tabela[j][i] = " ";
+				}
 			}
 			
 		}
