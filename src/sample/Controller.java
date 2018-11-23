@@ -2,6 +2,7 @@ package sample;
 
 
 import calculo.Logico;
+import calculo.Tabela;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
@@ -92,16 +93,8 @@ public class Controller{
 
         //InserirValores.valores(campo.getText());
     	String [][] tabela = Logico.calcular(campo.getText());
-    	String s = "";
-    	for(int i = 0; i < tabela.length; i++) {
-    		for (int j = 0; j < tabela[i].length; j++) {
-    			if (j == 0) s += "|";
-				s += " " + tabela[i][j] + " |";
-    		}
-    		s += "\n";
-    	}
-    	
-    	resultado.setText(s);
+    	Tabela t = new Tabela(tabela, campo.getText());
+    	t.setVisible(true);
     }
 
 }
