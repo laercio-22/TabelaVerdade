@@ -2,7 +2,6 @@ package sample;
 
 
 import calculo.Logico;
-import calculo.Tabela;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
