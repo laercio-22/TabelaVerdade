@@ -14,7 +14,7 @@ public class InserirValores {
         String[] valores = conteudo.split(" ");
 
         //determina quantas preposições são
-        for(int i =0; i<valores.length; i++){
+        for(int i =1; i<valores.length; i++){
 
             if(valores[i].equals("P")){
                 prepo.add("P");
